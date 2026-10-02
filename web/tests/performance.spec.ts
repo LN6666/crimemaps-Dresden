@@ -182,24 +182,24 @@ test("overview loads no POI geometry, month switching clears missing months", as
   await expect(page.locator("#city-switch")).toHaveValue("berlin");
   await expect(page.locator("#city-switch option[value='hamburg']")).toHaveAttribute("disabled", "");
   await expect(page.locator("#stats .big")).toHaveText("2");
-  await expect(page.locator("#stats button")).toContainText("1 条位置不足");
+  await expect(page.locator("#stats button")).toContainText("1条地点信息不足");
   expect(requests.filter((url) => url.includes("/pois/"))).toHaveLength(0);
   await expect
     .poll(async () => {
       await page.locator(".maplibregl-canvas").click();
       return page.locator("#selection").innerText();
     })
-    .toContain("2 条已收录警情");
+    .toContain("2条公告");
   await expect(page.locator("#selection")).toContainText("场所近似位置");
   await expect(page.locator("#selection")).toContainText(
-    "匹配对象跨度约 110 米",
+    "匹配的地图对象跨度约110米",
   );
-  await expect(page.locator("#selection")).toContainText("案发地优先");
+  await expect(page.locator("#selection")).toContainText("采用原文中第一个明确的案发地点");
   await expect(page.locator("#selection")).toContainText(
-    "其他案发地点候选：Anderstraße",
+    "原文还提到其他可能的案发地点：Anderstraße",
   );
   await expect(page.locator("#selection")).toContainText(
-    "本公告在网格中只计一条",
+    "本公告在六边形中只计一次",
   );
   await expect(page.locator("#selection")).toContainText("财产相关事件线索");
   await expect(page.locator("#selection")).toContainText("Das Fahrzeug wurde beschädigt.");

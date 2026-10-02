@@ -591,12 +591,12 @@ test("clicking overlapping scene shapes opens one report card with every scene",
   }).toContain("多地点公告");
   await expect(page.locator("#selection .report")).toHaveCount(1);
   await expect(page.locator("#selection .scene-list li")).toHaveCount(5);
-  await expect(page.locator("#selection")).toContainText("仅道路参考（非完整线路，精确路段未知）");
-  await expect(page.locator("#selection")).toContainText("主场景");
-  await expect(page.locator("#selection")).toContainText("同一公告最多计一次");
+  await expect(page.locator("#selection")).toContainText("仅作道路参照，不是完整线路；精确路段未知");
+  await expect(page.locator("#selection")).toContainText("用于公告统计的代表地点");
+  await expect(page.locator("#selection")).toContainText("每篇公告最多计一次");
   await page.locator("#category").selectOption("raub");
   await expect(page.locator("#selection")).not.toContainText("多地点公告");
-  await expect(page.locator("#stats")).toContainText("可计入网格 0 条 · 无计数主点 1 条");
+  await expect(page.locator("#stats")).toContainText("0条可计入六边形；1条没有可用于统计的代表地点");
   await page.locator("#month").selectOption("08");
   await expect(page.locator("#stats .big")).toHaveText("—");
 });
