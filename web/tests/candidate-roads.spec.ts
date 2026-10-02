@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixture";
 import type { Page } from "@playwright/test";
 import type { LineString, MultiLineString } from "geojson";
 import {
@@ -278,7 +278,7 @@ async function clickCenter(page: Page, offsetY = 0) {
 test.describe("candidate roads browser", () => {
   test.beforeEach(async ({ page }) => {
     await mockData(page);
-    await page.goto("/");
+    await page.goto("/?lang=zh");
     await expect(page.locator("#stats .big")).toHaveText("5");
   });
 

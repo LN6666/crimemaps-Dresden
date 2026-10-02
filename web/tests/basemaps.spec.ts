@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixture";
 import type {
   ErrorEvent,
   LayerSpecification,
@@ -275,9 +275,10 @@ test.describe("basemap browser", () => {
     page.on("console", (message) => {
       if (message.type() === "error") errors.push(message.text());
     });
-    await page.goto("/");
+    await page.goto("/?lang=zh");
     await expect(page.locator("#stats .big")).toHaveText("1");
-    await expect(page.locator("#basemap")).toHaveValue("street");
+    await expect(page.locator("#basemap")).toHaveValue("vector");
+    await page.locator("#basemap").selectOption("street");
     await expect
       .poll(
         () =>
@@ -360,7 +361,7 @@ test.describe("basemap browser", () => {
         });
       },
     );
-    await page.goto("/");
+    await page.goto("/?lang=zh");
     await expect(page.locator("#stats .big")).toHaveText("1");
     await page.locator("#basemap").selectOption("aerial");
     await expect(page.locator("#basemap-error")).toContainText("加载失败");
@@ -380,7 +381,7 @@ test.describe("basemap browser", () => {
   }) => {
     const requests: string[] = [];
     page.on("request", (request) => requests.push(request.url()));
-    await page.goto("/");
+    await page.goto("/?lang=zh");
     await expect(page.locator("#stats .big")).toHaveText("1");
     await page.locator(".maplibregl-ctrl-zoom-in").click();
     await expect
@@ -411,7 +412,7 @@ test.describe("basemap browser", () => {
 
   test("basemap controls and credits fit a narrow screen", async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 760 });
-    await page.goto("/");
+    await page.goto("/?lang=zh");
     await expect(page.locator("#stats .big")).toHaveText("1");
     await page.locator("#basemap").selectOption("aerial");
     await expect(page.locator(".maplibregl-ctrl-attrib")).toContainText(

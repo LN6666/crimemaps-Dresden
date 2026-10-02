@@ -1,5 +1,5 @@
 import {t} from "../src/safety/i18n";
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixture";
 import type { Bundle, FC, PoliceEvent, SceneLocation } from "../src/safety/model";
 import {
   countableEventIds,
@@ -581,7 +581,7 @@ test("clicking overlapping scene shapes opens one report card with every scene",
     } });
     return route.fulfill({ json: { type: "FeatureCollection", features: [] } });
   });
-  await page.goto("/");
+  await page.goto("/?lang=zh");
   await expect(page.locator("#stats .big")).toHaveText("2");
   const canvas = page.locator(".maplibregl-canvas");
   await expect.poll(async () => {

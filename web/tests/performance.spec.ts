@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixture";
 import { LRU, tileKeys } from "../src/safety/data";
 import { styledPois } from "../src/safety/model";
 
@@ -176,8 +176,8 @@ test("overview loads no POI geometry, month switching clears missing months", as
       });
     return route.fulfill({ json: empty });
   });
-  await page.goto("/");
-  await expect(page.locator("#city-switch optgroup")).toHaveCount(3);
+  await page.goto("/?lang=zh");
+  await expect(page.locator("#city-switch optgroup")).toHaveCount(1);
   await expect(page.locator("#city-switch option")).toHaveCount(14);
   await expect(page.locator("#city-switch")).toHaveValue("berlin");
   await expect(page.locator("#city-switch option[value='hamburg']")).toHaveAttribute("disabled", "");
