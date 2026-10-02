@@ -173,7 +173,7 @@ test.describe("basemap browser", () => {
             retrieved_at: "2026-09-27T12:00:00Z",
             coverage: { discovered: 1, fetched: 1, pending: 0, failed: 0 },
             months: { "2026-09": { count: 1 } },
-            categories: ["Raub"],
+            categories: ["raub"],
             tile_index: { pois: ["bar/335_2100"], roads: [] },
             tile_size: [0.04, 0.025],
             catalog: {
@@ -220,7 +220,7 @@ test.describe("basemap browser", () => {
               {
                 id: "1",
                 title: "Scene retained",
-                category: "Raub",
+                category: "raub",
                 month: "2026-09",
                 coordinates: [13.411, 52.508],
                 location_precision: "place",
@@ -414,7 +414,10 @@ test.describe("basemap browser", () => {
     await page.setViewportSize({ width: 320, height: 760 });
     await page.goto("/?lang=zh");
     await expect(page.locator("#stats .big")).toHaveText("1");
+    await page.locator(".mobile-basemap-settings > summary").click();
     await page.locator("#basemap").selectOption("aerial");
+    const attributionSummary = page.locator(".maplibregl-ctrl-attrib > summary");
+    if (await attributionSummary.isVisible()) await attributionSummary.click();
     await expect(page.locator(".maplibregl-ctrl-attrib")).toContainText(
       "DOP 2026",
     );

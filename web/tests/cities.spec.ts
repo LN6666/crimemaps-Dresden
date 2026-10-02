@@ -13,7 +13,7 @@ const foreignCity = config.city === "berlin" ? "hamburg" : "berlin";
 function manifest(city = native[config.city]) {
   return {schema_version:2,city,generation:"0123456789abcdef-20260928T120000",
     retrieved_at:"2026-09-28T12:00:00Z",coverage:{discovered:1,fetched:1,pending:0,failed:0},
-    months:{"2026-09":{count:1}},categories:["Diebstahl"],tile_index:{pois:[],roads:[]},
+    months:{"2026-09":{count:1}},categories:["diebstahl"],tile_index:{pois:[],roads:[]},
     tile_size:[0.04,0.025],catalog:{poi_types:{},sources:[],coverage:[],exhaustive:false},
     zones:{places:[],features:[],geometry_status:"not_applicable"},metadata:{zoom_threshold:13}};
 }
@@ -26,7 +26,7 @@ test("production repository prefix retains its city and ignores a foreign city q
     if (url.endsWith("/manifest.json")) return route.fulfill({json:manifest()});
     if (url.includes("/months/")) return route.fulfill({json:{
       event_ids:["fixture:1"],events:[{id:"fixture:1",title:"Synthetic unknown-location fixture",
-        category:"Diebstahl",month:"2026-09",coordinates:null,location_precision:"unknown",
+        category:"diebstahl",month:"2026-09",coordinates:null,location_precision:"unknown",
         location_label:"",poi_mentions:[],source_url:"https://example.org/fixture"}],
       hex:{overview:empty,detail:empty},links:[]}});
     return route.fulfill({json:empty});

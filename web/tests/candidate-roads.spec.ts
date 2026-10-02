@@ -39,7 +39,7 @@ function report(id: string, changes: Partial<PoliceEvent> = {}): PoliceEvent {
   return {
     id,
     title: id,
-    category: "Raub",
+    category: "raub",
     month: "2026-09",
     event_date: null,
     coordinates: null,
@@ -66,7 +66,7 @@ const rows = [
   report("Wide road A"),
   report("Wide road B"),
   report("Disconnected road", {
-    category: "Sachbeschädigung",
+    category: "sachbeschaedigung",
     geocode_method: "disconnected_street_review",
     candidate_road_geometry: disconnected,
   }),
@@ -200,7 +200,7 @@ async function mockData(page: Page) {
           retrieved_at: "2026-09-27T12:00:00Z",
           coverage: { discovered: 5, fetched: 5, pending: 0, failed: 0 },
           months: { "2026-09": { count: 5 } },
-          categories: ["Raub", "Sachbeschädigung"],
+          categories: ["raub", "sachbeschaedigung"],
           tile_index: { pois: [], roads: [] },
           tile_size: [0.04, 0.025],
           catalog: {
@@ -361,7 +361,7 @@ test.describe("candidate roads browser", () => {
   test("category and month filters replace the batched road ranges", async ({
     page,
   }) => {
-    await page.locator("#category").selectOption("Raub");
+    await page.locator("#category").selectOption("raub");
     await expect(page.locator("#stats .big")).toHaveText("4");
     await expect(page.locator("#stats")).toContainText(
       "其中 2 条可查看道路范围",
@@ -373,7 +373,7 @@ test.describe("candidate roads browser", () => {
       })
       .toContain("2 条待定位道路公告");
     const widePixels = await orangePixels(page);
-    await page.locator("#category").selectOption("Sachbeschädigung");
+    await page.locator("#category").selectOption("sachbeschaedigung");
     await expect(page.locator("#stats .big")).toHaveText("1");
     await expect(page.locator("#stats")).toContainText(
       "已定位 0 条 · 未定位 1 条（其中 1 条可查看道路范围）",
@@ -433,7 +433,7 @@ test.describe("candidate roads browser", () => {
       "已定位 1 条 · 未定位 4 条",
     );
     // Both separated pieces fit; the gap does not invent a connecting road.
-    await page.locator("#category").selectOption("Sachbeschädigung");
+    await page.locator("#category").selectOption("sachbeschaedigung");
     await expect(page.locator("#stats .big")).toHaveText("1");
     await expect
       .poll(async () => {

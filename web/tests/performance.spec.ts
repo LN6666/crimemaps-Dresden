@@ -114,7 +114,7 @@ test("overview loads no POI geometry, month switching clears missing months", as
           retrieved_at: "2026-09-27T12:00:00Z",
           coverage: { discovered: 2, fetched: 2, pending: 0, failed: 0 },
           months: { "2026-09": { count: 2 } },
-          categories: ["Raub"],
+          categories: ["raub"],
           tile_index: { pois: [], roads: [] },
           tile_size: [0.04, 0.025],
           catalog: {
@@ -135,7 +135,7 @@ test("overview loads no POI geometry, month switching clears missing months", as
             {
               id: "1",
               title: "Test",
-              category: "Raub",
+              category: "raub",
               month: "2026-09",
               coordinates: null,
               location_precision: "unknown",
@@ -145,7 +145,7 @@ test("overview loads no POI geometry, month switching clears missing months", as
             {
               id: "2",
               title: "Named park",
-              category: "Raub",
+              category: "raub",
               month: "2026-09",
               coordinates: [13.41, 52.51],
               location_precision: "place",
