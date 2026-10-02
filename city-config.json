@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "city": "dresden",
+  "repository": "crimemaps-Dresden",
+  "base_path": "/crimemaps-Dresden/",
+  "artifact_budget_bytes": 900000000,
+  "publication_ready": false
+}
