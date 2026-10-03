@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "city": "dresden",
+  "locale": "zh",
+  "layout": "stacked",
+  "presentation": "world_map_and_rank",
+  "path": "docs/assets/visitors-by-country.zh.mobile.svg",
+  "sha256": "b0770d0f24e2e0577275f2312a7901bc027236d86f1fea0b97b898aa8e3aab5e",
+  "source_kind": "not_connected",
+  "collection_status": "not_connected",
+  "metric": null,
+  "source": null,
+  "generated_at_utc": null
+}
